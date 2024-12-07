@@ -1,6 +1,6 @@
 #include "Animal.hpp"
 
-Animal::Animal() : type("Animal")
+Animal::Animal() : type_("Animal")
 {
 	std::cout << "Animal Constructor called" << std::endl;
 }
@@ -12,7 +12,7 @@ Animal::~Animal()
 
 Animal::Animal(const Animal &other)
 {
-	type = other.type;
+	type_ = other.type_;
 	std::cout << "Animal copy constructor called" << std::endl;
 }
 
@@ -20,7 +20,7 @@ Animal &Animal::operator=(const Animal &other)
 {
 	if (this != &other)
 	{
-		type = other.type;
+		type_ = other.type_;
 	}
 	std::cout << "Animal assignation operator called" << std::endl;
 	return *this;
@@ -28,5 +28,5 @@ Animal &Animal::operator=(const Animal &other)
 
 std::string Animal::getType() const
 {
-	return type;
+	return type_;
 }

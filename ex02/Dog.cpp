@@ -2,21 +2,21 @@
 
 Dog::Dog()
 {
-	type = "Dog";
-	brain = new Brain();
+	type_ = "Dog";
+	brain_ = new Brain();
 	std::cout << "Dog Constructor called" << std::endl;
 }
 
 Dog::~Dog()
 {
-	delete brain;
+	delete brain_;
 	std::cout << "Dog Destructor called" << std::endl;
 }
 
 Dog::Dog(const Dog &other) : Animal(other)
 {
-	type = other.type;
-	brain = new Brain(*other.brain);
+	type_ = other.type_;
+	brain_ = new Brain(*other.brain_);
 	std::cout << "Dog copy constructor called" << std::endl;
 }
 
@@ -24,9 +24,9 @@ Dog &Dog::operator=(const Dog &other)
 {
 	if (this != &other)
 	{
-		type = other.type;
-		delete this->brain;
-		this->brain = new Brain();
+		type_ = other.type_;
+		delete this->brain_;
+		this->brain_ = new Brain();
 	}
 	std::cout << "Dog assignation operator called" << std::endl;
 	return *this;
@@ -39,10 +39,10 @@ void Dog::makeSound() const
 
 void Dog::setIdea(int index, std::string idea)
 {
-	brain->ideas[index] = idea;
+	brain_->ideas[index] = idea;
 }
 
 std::string Dog::getIdea(int index) const
 {
-	return brain->ideas[index];
+	return brain_->ideas[index];
 }

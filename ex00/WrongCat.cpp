@@ -3,7 +3,7 @@
 
 WrongCat::WrongCat()
 {
-	type = "WrongCat";
+	type_ = "WrongCat";
 	std::cout << "WrongCat Constructor called" << std::endl;
 }
 
