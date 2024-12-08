@@ -3,7 +3,12 @@
 Dog::Dog()
 {
 	type_ = "Dog";
-	brain_ = new Brain();
+	brain_ = new(std::nothrow) Brain();
+	if (brain_ == NULL)
+	{
+		std::cerr << "Failed to allocate memory for brain" << std::endl;
+		std::exit(1);
+	}
 	std::cout << "Dog Constructor called" << std::endl;
 }
 
@@ -16,7 +21,12 @@ Dog::~Dog()
 Dog::Dog(const Dog &other) : Animal(other)
 {
 	type_ = other.type_;
-	brain_ = new Brain(*other.brain_);
+	brain_ = new(std::nothrow) Brain(*other.brain_);
+	if (brain_ == NULL)
+	{
+		std::cerr << "Failed to allocate memory for brain" << std::endl;
+		std::exit(1);
+	}
 	std::cout << "Dog copy constructor called" << std::endl;
 }
 
@@ -26,7 +36,12 @@ Dog &Dog::operator=(const Dog &other)
 	{
 		type_ = other.type_;
 		delete this->brain_;
-		this->brain_ = new Brain();
+		this->brain_ = new(std::nothrow) Brain();
+		if (this->brain_ == NULL)
+		{
+			std::cerr << "Failed to allocate memory for brain" << std::endl;
+			std::exit(1);
+		}
 	}
 	std::cout << "Dog assignation operator called" << std::endl;
 	return *this;

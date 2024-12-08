@@ -3,7 +3,12 @@
 Cat::Cat()
 {
 	type_ = "Cat";
-	brain_ = new Brain();
+	brain_ = new(std::nothrow) Brain();
+	if (brain_ == NULL)
+	{
+		std::cerr << "Failed to allocate memory for brain" << std::endl;
+		std::exit(1);
+	}
 	std::cout << "Cat Constructor called" << std::endl;
 }
 
@@ -16,7 +21,12 @@ Cat::~Cat()
 Cat::Cat(Cat const &other) : Animal(other)
 {
 	type_ = other.type_;
-	brain_ = new Brain(*other.brain_);
+	brain_ = new(std::nothrow) Brain(*other.brain_);
+	if (brain_ == NULL)
+	{
+		std::cerr << "Failed to allocate memory for brain" << std::endl;
+		std::exit(1);
+	}
 	std::cout << "Cat copy constructor called" << std::endl;
 }
 
@@ -26,7 +36,12 @@ Cat &Cat::operator=(Cat const &other)
 	{
 		type_ = other.type_;
 		delete this->brain_;
-		this->brain_ = new Brain(*other.brain_);
+		this->brain_ = new(std::nothrow) Brain(*other.brain_);
+		if (this->brain_ == NULL)
+		{
+			std::cerr << "Failed to allocate memory for brain" << std::endl;
+			std::exit(1);
+		}
 	}
 	std::cout << "Cat assignation operator called" << std::endl;
 	return *this;

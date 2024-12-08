@@ -3,6 +3,7 @@
 
 #include "Animal.hpp"
 #include "Brain.hpp"
+#include <cstdlib>
 
 class Cat : public Animal
 {
